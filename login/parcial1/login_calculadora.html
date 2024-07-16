@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007bff;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-container input[type="submit"],
+        .login-container input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-container input[type="submit"]:hover,
+        .login-container input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+        .nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .calculadora-container {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            margin: 20px auto;
+        }
+        .calculadora-container h2 {
+            margin-top: 0;
+        }
+    </style>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === 'examen_parcial2' && password === 'Voyporel100') {
+                alert('Login exitoso');
+                // Aquí puedes redirigir al usuario a otra página si es necesario
+                window.location.href = 'pagina_principal.html';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        function loadCalculadora(fileName) {
+            const container = document.getElementById('calculadora-content');
+            fetch(fileName)
+                .then(response => response.text())
+                .then(data => {
+                    container.innerHTML = data;
+                })
+                .catch(error => {
+                    container.innerHTML = '<p>Error al cargar la calculadora.</p>';
+                });
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Bienvenido</h1>
+    </div>
+    <div class="nav">
+        <a href="javascript:void(0)" onclick="loadCalculadora('login.html')">Login</a>
+        <a href="javascript:void(0)" onclick="loadCalculadora('efectividad_cotidiana.html')">Efectividad Cotidiana</a>
+        <a href="javascript:void(0)" onclick="loadCalculadora('efectividad_empresarial.html')">Efectividad Empresarial</a>
+        <a href="javascript:void(0)" onclick="loadCalculadora('efectividad_eficiencia_eficacia.html')">Efectividad, Eficiencia y Eficacia</a>
+        <a href="javascript:void(0)" onclick="loadCalculadora('rio.html')">RIO</a>
+    </div>
+    <div class="container">
+        <div id="calculadora-content" class="calculadora-container">
+            <!-- Contenido cargado dinámicamente -->
+        </div>
+    </div>
+</body>
+</html>
